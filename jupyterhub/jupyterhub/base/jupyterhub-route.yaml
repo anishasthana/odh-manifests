@@ -17,3 +17,23 @@ spec:
     kind: Service
     name: jupyterhub
     weight: 100
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    kubernetes.io/tls-acme: 'true'
+  labels:
+    app: jupyterhub
+  name: jupyterhub-test-two
+spec:
+  host: ''
+  port:
+    targetPort: 8080-tcp
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: jupyterhub
+    weight: 100
