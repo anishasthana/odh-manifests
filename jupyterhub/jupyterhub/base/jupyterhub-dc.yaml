@@ -28,7 +28,10 @@ spec:
       containers:
       - env:
         - name: JUPYTERHUB_SERVICE_NAME
-          value: jupyterhub
+          valueFrom:
+            secretKeyRef:
+              name: jupyterhub
+              key: JUPYTERHUB_SERVICE
         - name: JUPYTERHUB_DATABASE_PASSWORD
           valueFrom:
             secretKeyRef:
